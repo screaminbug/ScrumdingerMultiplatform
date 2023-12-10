@@ -1,16 +1,42 @@
 import SwiftUI
+import KMPNativeCoroutinesAsync
 import shared
 
 struct ContentView: View {
-	let greet = Greeting().greet()
-
+    @ObservedObject private(set) var viewModel: ViewModel
+    
 	var body: some View {
-		Text(greet)
+        ListView(phrases: viewModel.greetings)
+            .onAppear { self.viewModel.startObserving() }
 	}
 }
 
-struct ContentView_Previews: PreviewProvider {
-	static var previews: some View {
-		ContentView()
-	}
+extension ContentView {
+    @MainActor
+    class ViewModel: ObservableObject {
+        @Published var greetings: Array<String> = []
+        
+        func startObserving() {
+            Task {
+                do {
+                    let sequence = asyncSequence(for: Greeting().greet())
+                    for try await phrase in sequence {
+                        self.greetings.append(phrase)
+                    }
+                } catch {
+                    print("Failed with error:  \(error)")
+                }
+            }
+        }
+    }
+}
+
+struct ListView: View {
+    let phrases: Array<String>
+    
+    var body: some View {
+        List(phrases, id: \.self) {
+            Text($0)
+        }
+    }
 }
