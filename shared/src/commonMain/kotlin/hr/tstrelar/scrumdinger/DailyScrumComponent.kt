@@ -36,7 +36,7 @@ class DailyScrumComponent : Closable {
         ),
         DailyScrum(
             title = "App Dev",
-            attendees = listOf("Katie", "Gray", "Euna", "Luis", "Darla").toAttendees(),
+            attendees = listOf("Katie", "Gray", "Euna", "Luis", "Darla", "Đuro S. Zlikowsky").toAttendees(),
             lengthInMinutes = 5,
             theme = Theme.orange
         ),

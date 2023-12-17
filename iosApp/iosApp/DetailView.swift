@@ -33,7 +33,7 @@ struct DetailView: View {
                 }
             }
             Section(header: Text("Attendees")) {
-                ForEach(scrum.attendees) { attendee in
+                ForEach(scrum.attendees, id:\.id){ attendee in
                     Label(attendee.name, systemImage: "person")
                 }
             }
@@ -45,7 +45,14 @@ struct DetailView: View {
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            DetailView(scrum: DailyScrum.sampleData[0])
+            DetailView(
+                scrum: DailyScrum(
+                    title: "Test",
+                    attendees: [],
+                    lengthInMinutes: 10,
+                    theme: Theme.bubblegum
+                )
+            )
         }
     }
 }
