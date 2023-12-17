@@ -1,5 +1,6 @@
 package hr.tstrelar.scrumdinger
 
+import platform.Foundation.NSUUID
 import platform.UIKit.UIDevice
 
 class IOSPlatform: Platform {
@@ -7,3 +8,4 @@ class IOSPlatform: Platform {
 }
 
 actual fun getPlatform(): Platform = IOSPlatform()
+actual fun generateUUID() = NSUUID.UUID().UUIDString

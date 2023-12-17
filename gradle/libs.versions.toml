@@ -11,6 +11,7 @@ ktorVersion = "2.3.6"
 lifecycle = "2.6.2"
 ksp = "2.0.0-Beta1-1.0.15"
 kmpNativeCoroutines = "1.0.0-ALPHA-22-kotlin-2.0.0-Beta1"
+napierVersion = "2.6.1"
 
 [libraries]
 # Test
@@ -39,6 +40,9 @@ ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "k
 ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktorVersion"}
 ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktorVersion"}
 ktor-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktorVersion"}
+
+#Logging
+napier-logging = { module = "io.github.aakira:napier", version.ref = "napierVersion" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
